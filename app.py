@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # База данных
@@ -70,6 +71,25 @@ def profile():
 def logout():
     logout_user()
     return redirect(url_for("home"))
+
+# Основная страница
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route('/random')
+def random_page():
+    name = ["Саида", "Володя", "Саша", "Мадина", "Данилка", "Дамирка", "Пашка", "Адиль", "Илюша", "Ромашка", "Ансар",
+            "Артур", "Вова Аватар", "Даниил", "Рамазан", "Арман", "Жннииис", "Дениска"]
+    stat = ["ТОооооооооооооп", "Красивейший созданий", "Неадекватный", "Гомосексуаль", "Очеровательный",
+            "Лох обыкновенный", "Григооорий", "Быстрый", "Не красивыйй", "Тупой"]
+    glag = ["Бухает", "Курит", "Прыгает", "Кушает", "Какает", "Обнимается с Ильей", "Целуется с Дениской"]
+
+    w2 = random.choice(name)
+    w1 = random.choice(stat)
+    w3 = random.choice(glag)
+    result = f"{w1} {w2} {w3}"
+    return render_template('random.html',result=result)
 
 if __name__ == "__main__":
     with app.app_context():
