@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import random
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # База данных
@@ -91,7 +92,10 @@ def random_page():
     result = f"{w1} {w2} {w3}"
     return render_template('random.html',result=result)
 
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()  # Создаёт таблицы в базе данных
-    app.run(debug=True)
+
+    port = int(os.environ.get("PORT", 5000))  # Railway использует переменную PORT
+    app.run(host="0.0.0.0", port=port)
