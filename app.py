@@ -78,19 +78,11 @@ def logout():
 def dashboard():
     return render_template("dashboard.html")
 
-@app.route('/random')
+@app.route('/random_page')
 def random_page():
-    name = ["Саида", "Володя", "Саша", "Мадина", "Данилка", "Дамирка", "Пашка", "Адиль", "Илюша", "Ромашка", "Ансар",
-            "Артур", "Вова Аватар", "Даниил", "Рамазан", "Арман", "Жннииис", "Дениска"]
-    stat = ["ТОооооооооооооп", "Красивейший созданий", "Неадекватный", "Гомосексуаль", "Очеровательный",
-            "Лох обыкновенный", "Григооорий", "Быстрый", "Не красивыйй", "Тупой"]
-    glag = ["Бухает", "Курит", "Прыгает", "Кушает", "Какает", "Обнимается с Ильей", "Целуется с Дениской"]
+    return render_template('random.html')
 
-    w2 = random.choice(name)
-    w1 = random.choice(stat)
-    w3 = random.choice(glag)
-    result = f"{w1} {w2} {w3}"
-    return render_template('random.html',result=result)
+
 
 
 if __name__ == "__main__":
